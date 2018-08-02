@@ -25,4 +25,4 @@
         gpgcheck=0`
 
  
- 10. yum install gcc --enablerepo=warning:fedora 
+ 10. run `yum install gcc --enablerepo=warning:fedora`
