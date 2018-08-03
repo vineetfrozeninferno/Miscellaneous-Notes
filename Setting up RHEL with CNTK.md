@@ -10,8 +10,6 @@
  
 
     `PATH=$PATH:$HOME/.local/bin:$HOME/bin:/usr/lib64/openmpi/bin
-    
-    
     export LD_LIBRARY_PATH=/usr/lib64/openmpi/lib:$LD_LIBRARY_PATH`
 
  6. install `cntk` using `pip`
