@@ -1,3 +1,4 @@
+
 **Setting up CNTK on RHEL in openstack/openhouse**
 
  1. Choose RHEL7 machine
@@ -7,10 +8,9 @@
 
  4. install `openmpi` with `yum`
  5. add the following lines to `~/.bash_profile`
- 
 
-    `PATH=$PATH:$HOME/.local/bin:$HOME/bin:/usr/lib64/openmpi/bin
-    export LD_LIBRARY_PATH=/usr/lib64/openmpi/lib:$LD_LIBRARY_PATH`
+    `PATH=$PATH:$HOME/.local/bin:$HOME/bin:/usr/lib64/openmpi/bin`
+    `export LD_LIBRARY_PATH=/usr/lib64/openmpi/lib:$LD_LIBRARY_PATH`
 
  6. install `cntk` using `pip`
  7. run `"python -c "import cntk; print(cntk.__version__)"`
