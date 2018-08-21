@@ -1,0 +1,10 @@
+#!/bin/bash
+
+ssh -A $1
+output=$?
+if [ "$output" != "0" ]
+then
+  echo "yinit may be required to log in."
+  yinit
+  ssh -A $1
+fi
