@@ -7,4 +7,6 @@ then
   echo "yinit may be required to log in."
   yinit
   ssh -A $1
+else
+  ssh -A $1
 fi
