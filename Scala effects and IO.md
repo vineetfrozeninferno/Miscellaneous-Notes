@@ -90,6 +90,8 @@ Good implementation, but unless one is looking for a streaming, you don't need t
 
 ## Cats effect `IO` monad - https://typelevel.org/cats-effect/datatypes/io.html
 
+### What?
+
 1. An `IO[A]` represents a description of a side effectful computation. It
     - executes some effects
     - ends by returning a value A
@@ -100,6 +102,19 @@ Good implementation, but unless one is looking for a streaming, you don't need t
     - `unsafeRunTimed`
     - `unsafeToFuture`
 3. `IO` are not memoized. They are run everytime they are called, unlike `Future`.
+
+### Why? **Hope you have worked with akka actors before..**
+
+1. Akka actors are used for `concurrency` and `distribution`.
+2. Akka actors are an expensive framework with many features required for `distribution`. If we only want concurrency on a single system, using Akka actors is overkill.
+3. If we use akka actors to accept a request from a user with an `auth` header and execute the request and return the response, a likely breakup of the code would be to create actors for
+    - converting incoming HTTP request into (auth-header, request) tuple.
+    - verify that auth-header is valid.
+    - extract user-identifier.
+    - use user-identifier to check if the user has access to resource.
+    - if access is allowed, execute request and get response. Return response.
+4. On a single system, these things can be built out as IO objects instead of actors and composed into a graph using `flatmap`, `map` and `for-comprehesion`. The graph can then be executed to get similar results without the heavy akka framework.
+5. The graph can branch into multiple nodes to allow for concurrency.
 
 ### `IO.pure()`
 
