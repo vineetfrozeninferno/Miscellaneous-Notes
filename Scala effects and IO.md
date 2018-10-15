@@ -113,7 +113,7 @@ Good implementation, but unless one is looking for a streaming, you don't need t
     - extract user-identifier.
     - use user-identifier to check if the user has access to resource.
     - if access is allowed, execute request and get response. Return response.
-4. On a single system, these things can be built out as IO objects instead of actors and composed into a graph using `flatmap`, `map` and `for-comprehesion`. The graph can then be executed to get similar results without the heavy akka framework.
+4. On a single system, these things can be built out as IO objects instead of actors and composed into a graph using `flatmap`, `map` and `for-comprehension`. The graph can then be executed to get similar results without the heavy akka framework.
 5. The graph can branch into multiple nodes to allow for concurrency.
 
 ### `IO.pure()`
