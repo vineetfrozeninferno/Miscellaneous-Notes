@@ -1,18 +1,21 @@
 # Data Structures
 
-## 0,. General Notes
+## 0. General Notes
 1. **Iterating through a string**
-  ```
-  for (char ch : exampleString.toCharArray()){ System.out.println(ch);}
-  ```
+    ```
+    for (char ch : exampleString.toCharArray()){ System.out.println(ch);}
+    ```
 2. **Creating an array**
-  ```
-  int[] arr = new int[] {1,2,3,4,5};
-  ```
+    ```
+    int[] arr = new int[] {1,2,3,4,5};
+    ```
+    ```
+    int[] anArray = new int[10];
+    ```
 3. **Creating a list from array**
-  ```
-  List<Integer> intList = Arrays.asList(new Integer[] {1,2,3,4,5});
-  ```
+    ```
+    List<Integer> intList = Arrays.asList(new Integer[] {1,2,3,4,5});
+    ```
 4. **Common implementation [https://docs.oracle.com/javase/tutorial/collections/implementations/summary.html]**
   - `Set` => `HashSet` implementation.
   - `List` => `ArrayList` implementation.
@@ -29,7 +32,7 @@
 
 ## 1. Arrays
 1. **Intro [x]**
-   - Notes
+   - **Notes**
       - Cannot create without specifying size. Size can be a variable.
       - When asked for sum-of-subarray
         - insert start-to-current sum for every element into another array, with start of array as 0, 1st = arr[0], 2nd = 1st + arr[1].. so on
@@ -37,12 +40,12 @@
       - given two arrays, find k max/min pair sums, picking one element from each array.
         - simple soln [https://www.geeksforgeeks.org/k-maximum-sum-combinations-two-arrays/]
 2. **Rotation [x]**
-   - interesting problems
+   - **interesting problems**
      - Find pivot in a rotated sorted array / Find rotation count rotated sorted array - [https://www.geeksforgeeks.org/find-rotation-count-rotated-sorted-array/]
      - Find maximum value of Sum( i*arr[i]) with only rotations on given array allowed - [https://www.geeksforgeeks.org/find-maximum-value-of-sum-iarri-with-only-rotations-on-given-array-allowed/]
 3. **Rearrangement [x]**
 4. **Order Statistics [x]**
-   - Interesting
+   - **Interesting**
      - find the k largest/smallest elements.
        - Use heap of size=k. largest = minHeap, smallest = maxHeap
      - Longest Contiguous Sum
@@ -50,6 +53,8 @@
        - keep track of maxSumTillCurrent
        - if maxSumTillCurrent < 0, reset the subarray.
          - since adding any number to this maxSumTillCurrent will be less than starting the subarray after this.
+     - Longest Increasing Subsequence - [https://www.geeksforgeeks.org/dynamic-programming-set-3-longest-increasing-subsequence/]
+     - Longest Common Subsequence - [https://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/]http://lt.transmail.ftrans05.com/rdz?id=16575=Jh1RCQgHDFNUGQUIVQYHBwIFCR8=QFhdUB8PWUUHQllXVlFQeV5cWA0NS1ZXCEoGAgcGC1QPBQcGUVEEAFoBAg==&fl=DRUVSUoLFksSCFRKEUxYWVcbSwZaWFZfBQBRUwxXQwQJTwJWF1hXSzEKWVEGTxhnQFBUCkNcZEQLCFdEG3ReFyAZFVxLX1gI&ext=cG9saWN5SWQ9VUMyUGd3dWEwOG9KWjJsJTJiR2dOS1lnJTNkJTNk
      - number of subarrays with even sum
        - keep track of contiguous sum in cs[i]
        - a subarray from i to j has even sum if
@@ -212,6 +217,26 @@
 # Programming Concepts
 
 ## 1. Threads
+### basics - Java
+  - [https://docs.oracle.com/cd/E19455-01/806-5257/6je9h0329/index.html]
+  - **Concurrency** = `n threads -> 1 processor`
+  - **Parallelism** = `n threads -> m processors`
+  - Threads share address-space within process
+    - Cheap to create since new address-space need not be created.
+    - Less time switching threads than switching processes
+    - Easier to share data between threads
+  - Each process has 1 or more Light Weight Processes (LWP), which are like virtual CPUs (Kernel threads)
+    - Threads created in the application are User Threads
+    - **Unbound user threads** -> 1 user thread bound to 1 LWP
+    - **Bound user thread** -> user thread is scheduled onto any one of the available free LWPs
+
+### Guidelines
+  - [https://docs.oracle.com/cd/E19455-01/806-5257/6je9h0342/index.html]
+  - Global Variables
+    - global variables are not thread-safe. Use `ThreadLocal<DataType>`
+      - `ThreadLocal<Integer> threadLocalValue = new ThreadLocal<>();`
+      - `ThreadLocal<Integer> threadLocal = ThreadLocal.withInitial(() -> 1);`
+
 ### concurrent execution
   - [https://www.geeksforgeeks.org/different-approaches-to-concurrent-programming-in-java/]
   - parallel execution within a thread-pool
@@ -220,6 +245,8 @@
     ExecutorService taskList = Executors.newFixedThreadPool(poolSize);
     taskList.execute(someRunnable)
     ```
+  - Another way is to create a class that implements `Runnable` interface and pass this class instance in the constructor of `Thread` and call `thread.start()`.
+  - 
 
 ### daemon threads
   - low priority background threads
@@ -233,6 +260,7 @@
   - `Thread.sleep(timeInMs)`
     - pauses use of the processor core, similar to yield. Gives up control of the processor core.
     - if there are no other threads, the thread still does not execute. Processor core may enter idle state.
+    - can be interrupted. `Thread.sleep()` then throws and `IterruptedException`.
   - `anotherThread.join(waitTimeInMs)`
     - callingThread waits for `waitTimeinMs` for `anotherThread` to complete.
     - if no `waitTimeInMs` is specified, indefinitely wait.
@@ -240,5 +268,50 @@
 ## 2. Synchronization
   - basic synchronization = [https://www.geeksforgeeks.org/method-block-synchronization-java/]
   - reentrant locks = [https://www.geeksforgeeks.org/reentrant-lock-java/]
+  - synchronized methods = lock on the object, when one `synchronized` method is being executed, no other `synchronized` may be executed by other threads.
+    - `public synchronized int value() { return c; }`
+  - synchronized block = finer granularity, gains lock on the object passed as its argument.
+    - ```
+      synchronized(objectToLockOn) {
+        lastName = name;
+        nameCount++;
+      }
+      ```
+    - Both the above methods are reentrant.
+    - Using the `java.util.concurrent.locks.Lock` interface, use `tryLock(timeoutInMs)`. It waits for `timeoutInMs` and returns `true` if it gets the lock, else `false`
+    - 
+
 ## 3. Deadlocks
   - [https://www.geeksforgeeks.org/operating-system-process-management-deadlock-introduction/]
+
+## 4. Basic socket communication - [https://www.geeksforgeeks.org/socket-programming-in-java/]
+## 5. IO
+  - `FileInputStream`/`FileOutputStream`
+    - Read/Write in `bytes`
+    - store each iteration in `int` with the last `8 bits` representing data, stop at `-1`
+    - constructor takes in file-path as string
+  - `FileReader`/`FileWriter`
+    - Read/Write in `characters`
+    - store each iteration in `int` with last `16 bits` representing data, stop at `-1`
+    - constructor takes in file-path as string
+  - `BufferedInputStream`/`BufferedOutputStream`
+    - read and write byte streams with a buffer in-between.
+    - call `flush()` method to flush the write-buffer.
+    - constructor takes in `InputStream`/`OutputStream`
+  - `BufferedReader`/`BufferedWriter(PrintWriter)`
+    - constructor takes in `InputStream`/`OutputStream`
+    - read and write character streams with a buffer in-between
+    - `BufferedReader` has a `readLine()` method to read lines of text
+    - `PrintWriter` has a `println(Object)`, `printf(Object)`, `format(String, Objects)` method to write data to file and flush it
+  - `Scanner`
+    - constructor takes in `BufferedReader`
+    - read tokens separated by whitespaces
+    - hasNext`datatype` and next`datatype` return datatype, `hasNext` and `next` return `String`.
+  - `Console`
+    - constructed using `System.console()`
+    - `readLine` to read a line of data from console
+    - `readPassword` to read passwords
+## 6. Exceptions
+  - client can recover from an exception = **checked exception**
+  - client cannot recover from the exception = **unchecked exception**
+## 7. Concurrency
