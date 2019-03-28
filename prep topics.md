@@ -54,7 +54,7 @@
        - if maxSumTillCurrent < 0, reset the subarray.
          - since adding any number to this maxSumTillCurrent will be less than starting the subarray after this.
      - Longest Increasing Subsequence - [https://www.geeksforgeeks.org/dynamic-programming-set-3-longest-increasing-subsequence/]
-     - Longest Common Subsequence - [https://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/]http://lt.transmail.ftrans05.com/rdz?id=16575=Jh1RCQgHDFNUGQUIVQYHBwIFCR8=QFhdUB8PWUUHQllXVlFQeV5cWA0NS1ZXCEoGAgcGC1QPBQcGUVEEAFoBAg==&fl=DRUVSUoLFksSCFRKEUxYWVcbSwZaWFZfBQBRUwxXQwQJTwJWF1hXSzEKWVEGTxhnQFBUCkNcZEQLCFdEG3ReFyAZFVxLX1gI&ext=cG9saWN5SWQ9VUMyUGd3dWEwOG9KWjJsJTJiR2dOS1lnJTNkJTNk
+     - Longest Common Subsequence - [https://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/]
      - number of subarrays with even sum
        - keep track of contiguous sum in cs[i]
        - a subarray from i to j has even sum if
