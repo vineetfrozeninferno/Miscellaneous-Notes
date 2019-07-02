@@ -1,5 +1,7 @@
 # Data Structures
 
+- [http://blog.gainlo.co/index.php/category/coding-interview-questions/]
+
 ## 0. General Notes
 1. **Iterating through a string**
     ```
@@ -26,9 +28,16 @@
   - `Max-Heap`  => `PriorityQueue<>(Collections.reverseOrder())` implementation.
 5. **Common methods**
   - `Stack` => `.push(E)`, `.pushAll(Collection<E>)`, `.pop()`
-  - `String` => `.subString(start, endNotInclusive)`, `.charAt(int)`, `.toCharArray()`
+  - `String` => `.subString(start, endNotInclusive)`, `.charAt(int)`, `.toCharArray()`, `.length()`
+  - `Array` => `.length` (no parentheses)
   - `LinkedList` (queue) => `.add(E)`, `.addAll(Collection<E>)`, `.poll()`
   - `PriorityQueue` => `.add(E)`, `.addAll(Collection<E>)`, `.poll()`
+  - `Map` => `.keySet()`, `.values()`, `containsKey(Type key)`, [`.entrySet()` (has Map.Entry objects that have `.getKey()`, `.getValue()`)]
+6. **Comparable Interface**
+  - `int compareTo(Type other)`
+7. **OverlappingRanges**
+  - [https://stackoverflow.com/questions/325933/determine-whether-two-date-ranges-overlap/325964#325964]
+  - for ranges [(s1,e1),(s2,e2)] => overlap if `s1<=e2 &&s2<=e1`
 
 ## 1. Arrays
 1. **Intro [x]**
@@ -104,15 +113,29 @@
      - 
 2. **Hard - 25**
 ## 6. Heaps - 48 [x]
-  - PriorityQueue is a good implementation of min-heap
-  - PriorityQueue(capacity, Comparators.reverseOrder) is an implemenation of max-heap.
+  - Notes [https://en.wikipedia.org/wiki/Binary_heap]
+    - heap must satisfy
+      - **shape-property** = complete binary tree = all levels except last one are filled.
+      - **heap-property** = parent is greater(if max-heap) or lesser(if min-heap) than child nodes
+    - to ensure shape-property is satisfied
+      - insertion adds element to the end of the tree and then ensures heap-property is met. (up-heap. Check wikipedia link)
+      - deletion swaps root for last element and then removes the last element. Then ensures heap-property is met. (down-heap. Check wikipedia link)
+    - finding last element is important in insertion and deletion. Hence array is the most efficient representation of a heap
+      - root at `0`
+      - parent at `i`
+      - left child at `2i+1`
+      - right child at `2i+2`
+    - to build a heap
+      - follow insertion algo for each element = each insertion = `logN`. Total time = `NlogN`
+      - floyd algo
+        - insert elements into heap in random order without meeting heap-property.
+        - from the leaf nodes, traverse upwards. At each node, verify heap property for sub-tree rooted at that element.
+        - time complexity is N - [https://courses.cs.washington.edu/courses/cse373/18wi/files/slides/lecture-14-ann.pdf]
+
+
+  - `PriorityQueue` is a good implementation of min-heap
+  - `PriorityQueue<>(Collections.reverseOrder())` is an implemenation of max-heap.
   - Check median of running numbers - [https://www.geeksforgeeks.org/median-of-stream-of-integers-running-integers/]
-  - BuildHeap
-    - Bottom-up
-    - called when building the heap the first time. uses heapify internally
-  - Heapify
-    - top-Down
-    - called when inserting a new 
 
 ## 7. Trees - 161
 1. **Introduction - 17 [x]**
@@ -129,6 +152,9 @@
 1. **Check and Smallest/Largest Element - 42**
 
 ## 9. Graphs - 165
+1. **Representation**
+  - Adjacency Matrix = used if graph is densely connected. Rare in real-world
+  - Adjacency List = More effecient, especially if implemented with hashset. Used when graph is sparse.
 1. **Introduction, DFS and BFS - 51**
     - when looking for paths/cycles, use DFS with backtracking, ie, DFS where, at the end of a node's processing, it is marked as *unvisited*
 1. **Graph Cycle - 15**
@@ -200,6 +226,7 @@
       - move elements less than pivot to left, greater than pivot to right
       - repeat process for the left and right sub-arrays.
     - bucket sort (with insertion sort)
+  - Interval overlap - [http://blog.gainlo.co/index.php/2016/07/12/meeting-room-scheduling-problem/]
 
 ## 3. Greedy Algorithms - 13
 ## 4. Dynamic Programming - 56
@@ -299,7 +326,7 @@
     - call `flush()` method to flush the write-buffer.
     - constructor takes in `InputStream`/`OutputStream`
   - `BufferedReader`/`BufferedWriter(PrintWriter)`
-    - constructor takes in `InputStream`/`OutputStream`
+    - constructor takes in `FileReader`/`FileWriter`
     - read and write character streams with a buffer in-between
     - `BufferedReader` has a `readLine()` method to read lines of text
     - `PrintWriter` has a `println(Object)`, `printf(Object)`, `format(String, Objects)` method to write data to file and flush it
