@@ -28,7 +28,7 @@
   - `Max-Heap`  => `PriorityQueue<>(Collections.reverseOrder())` implementation.
 5. **Common methods**
   - `Stack` => `.push(E)`, `.pushAll(Collection<E>)`, `.pop()`
-  - `String` => `.subString(start, endNotInclusive)`, `.charAt(int)`, `.toCharArray()`, `.length()`
+  - `String` => `.substring(start, endNotInclusive)`, `.charAt(int)`, `.toCharArray()`, `.length()`
   - `Array` => `.length` (no parentheses)
   - `LinkedList` (queue) => `.add(E)`, `.addAll(Collection<E>)`, `.poll()`
   - `PriorityQueue` => `.add(E)`, `.addAll(Collection<E>)`, `.poll()`
@@ -51,8 +51,18 @@
 2. **Rotation [x]**
    - **interesting problems**
      - Find pivot in a rotated sorted array / Find rotation count rotated sorted array - [https://www.geeksforgeeks.org/find-rotation-count-rotated-sorted-array/]
+     - Search in rotated sorted array - [http://blog.gainlo.co/index.php/2017/01/12/rotated-array-binary-search/](http://blog.gainlo.co/index.php/2017/01/12/rotated-array-binary-search/)
+        - find pivot (log N)
+        - binary search from start to pivot (log N)
+        - binary search from pivot to end (log N)
      - Find maximum value of Sum( i*arr[i]) with only rotations on given array allowed - [https://www.geeksforgeeks.org/find-maximum-value-of-sum-iarri-with-only-rotations-on-given-array-allowed/]
 3. **Rearrangement [x]**
+  - **interesting problems**
+    - Find the largest number possible given set of digits **(time-comp=O(n))**
+      - [details-in-comment](http://blog.gainlo.co/index.php/2017/01/20/arrange-given-numbers-to-form-the-biggest-number-possible/#comment-6125)
+      - maintain frequency-table of digits. table can have only entries from 0-9.
+    - Find next largest number - [second half of post](http://blog.gainlo.co/index.php/2017/01/20/arrange-given-numbers-to-form-the-biggest-number-possible/)
+
 4. **Order Statistics [x]**
    - **Interesting**
      - find the k largest/smallest elements.
@@ -342,3 +352,13 @@
   - client can recover from an exception = **checked exception**
   - client cannot recover from the exception = **unchecked exception**
 ## 7. Concurrency
+
+# Concepts
+
+## Permutation and Combination
+  - safes have combinations where the order of the entered keys matters. i.e. `123 != 132`. Combinations is a misnomer, it should be permutation.
+  - **permutation** = order matters => larger result set => `nPr = n! / (n-r)!`
+  - **combination** = order doesnt matter => smaller result set => `nCr = nPr / r!`
+  - permutations when there are repeats in the input, i.e., `1122234` => n! / for-each-char-repeated(number-of-repeats!) [https://www.mathwarehouse.com/probability/permutations-repeated-items.php]
+    - `1122234` = `7! / (number-of-1s! number-of-2s! ..)` = `7! / (2! 3!)` = `(7! / 12)` = `420`
+  - When asked to generate all permutations, usually **recursion/dynamic-programming** is the answer.
