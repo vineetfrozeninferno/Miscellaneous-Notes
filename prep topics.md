@@ -61,7 +61,7 @@
     - Find the largest number possible given set of digits **(time-comp=O(n))**
       - [details-in-comment](http://blog.gainlo.co/index.php/2017/01/20/arrange-given-numbers-to-form-the-biggest-number-possible/#comment-6125)
       - maintain frequency-table of digits. table can have only entries from 0-9.
-    - Find next largest number - [second half of post](http://blog.gainlo.co/index.php/2017/01/20/arrange-given-numbers-to-form-the-biggest-number-possible/)
+    - next largest combination of digits - [https://www.geeksforgeeks.org/find-next-greater-number-set-digits/], [second half of post](http://blog.gainlo.co/index.php/2017/01/20/arrange-given-numbers-to-form-the-biggest-number-possible/)
 
 4. **Order Statistics [x]**
    - **Interesting**
@@ -82,7 +82,6 @@
          - counting left to right, using combinatrics ans
            - numberEvenSumsC2 = NES!/[2! (NES-2)!]
            -  numberOddSumsC2 = NOS!/[2! (NOS-2)!]
-     - next largest combination of digits - [https://www.geeksforgeeks.org/find-next-greater-number-set-digits/] 
 5. **Range Queries [x]**
 6. **Searching and Sorting [ ]**  => _come back to it_
 7. **Optimization Problems [ ]**  => _come back to it_
@@ -124,6 +123,9 @@
 2. **Hard - 25**
 ## 6. Heaps - 48 [x]
   - Notes [https://en.wikipedia.org/wiki/Binary_heap]
+    - Heap conceptually consists of 1 root and N child-heaps
+      - **heap-property** = root is guaranteed to be the smallest(in min-heap) or largest (in max-heap) when compared to the roots of all the child-heaps.
+      - recursive structure, but more effeciently defined (for adding and removing elements) as an array.
     - heap must satisfy
       - **shape-property** = complete binary tree = all levels except last one are filled.
       - **heap-property** = parent is greater(if max-heap) or lesser(if min-heap) than child nodes
@@ -149,17 +151,22 @@
 
 ## 7. Trees - 161
 1. **Introduction - 17 [x]**
-   - Balancing AVL - [https://www.geeksforgeeks.org/avl-tree-set-1-insertion/]
+  - Balancing AVL - [https://www.geeksforgeeks.org/avl-tree-set-1-insertion/]
 2. **Traversals - 32 [x]**
 3. **Construction & Conversion - 35 [x]**
 4. **Checking & Printing - 34**
 5. **Summation - 33**
-6. **Longest Common Ancestor - 12**
+6. **Lowest Common Ancestor - 12**
 
 ## 8. Binary Search Trees - 60
 1. **Basic**
 1. **Construction and Conversion - 18**
 1. **Check and Smallest/Largest Element - 42**
+  - find largest element = rightmost element in a BST
+  - find smallest element = leftmost element in a BST
+  - in-order traversal gives elements in ascending order.
+  - find the k smallest elements = in-order traversal, printing/storing k elements
+  - find the k largest elements = reversal in-order traversal, printing/storing k elements
 
 ## 9. Graphs - 165
 1. **Representation**
@@ -178,7 +185,7 @@
       - if the in-degree of any of these nodes becomes zero, add to queue.
 
 2. **Minimum Spanning Tree - 10**
-- Checkout algo description videos - [https://www.youtube.com/channel/UCzDJwLWoYCUQowF_nG3m5OQ]
+- Checkout algo description videos - [https://www.youtube.com/user/mikeysambol/videos]
 - Kruskal's algo (greedy) (E log E)
   - sort edges by weight
   - iterate through edges and add them to MST as long as a cycle is not formed.
