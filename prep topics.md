@@ -114,6 +114,34 @@
 3. **Doubly Linked List [ ]**  => _come back to it_
 
 ## 5. Hash Tables - 136 [x]
+1. Notes
+  - Consistent Hashing [link](https://towardsdatascience.com/consistent-hashing-simplified-7fe4e512324)
+    - used when a hashMap is distributed across multiple servers
+    - **`% number-of-server`**.
+      - +ve = very simple
+      - -ve = if number-of-servers changes due to server-addition or server-failure, most of the data has to be repositioned
+        - eg - if there are 3 servers, and range of hash-output is 6.
+          - server0 => 0, 3
+          - server1 => 1, 4
+          - server2 => 2, 5
+          when one server goes down, the modulo drops to 2
+          - server0 => 0, 2, 4
+          - server1 => 1, 3, 5
+        keys 3 and 4 was moved even though there was nothing wrong with server0
+    - **`consistent hashing`**
+      - +ve - resilient to changes in number of servers
+      - -ve - more complex
+      - eg - if there are 3 servers, and range of hash-output is 6.
+        - server0 takes any value less than 6/3 = 2
+        - server1 takes any value less than 2*6/3 = 4
+        - server1 takes any value less than 3*6/3 = 6
+        so,
+          - server0 => 0, 1
+          - server1 => 2, 3
+          - server2 => 4, 5
+        - when server2 goes down, keys from server2 wrap arnd and get stored onto server0.
+        - when server0 goes down, keys from server0 are stored onto server1
+
 1. **Basics - 6**
 1. **Easy - 62**
 1. **Intermediate - 43**
