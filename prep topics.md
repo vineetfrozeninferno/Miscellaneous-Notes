@@ -275,6 +275,7 @@
 
 ## 3. Greedy Algorithms - 13
 ## 4. Dynamic Programming - 56
+  - Use `transcipt` idea to calculate time complexity - [NPTEL video][https://youtu.be/6h6Fi6AQiRM?t=2251]
 ## 5. Pattern Searching - 14
 ## 6. Other String Algorithms - 3
 ## 7. Backtracking - 10
