@@ -146,8 +146,19 @@
 1. **Easy - 62**
 1. **Intermediate - 43**
    - Interesting Problems
-     - [https://www.geeksforgeeks.org/find-if-there-is-a-subarray-with-0-sum/]
-     - 
+     - Pairs with a given sum [https://www.geeksforgeeks.org/count-pairs-with-given-sum/]
+       - Add all the numbers to a HashSet.
+       - Before adding check if `(sum - number)` already exists in the hashSet. If yes, increment `pairsCount`.
+     - Pairs that are divisible by given number K
+       - The Math
+         - if a number is divisble by K, `number = aK`
+         - if `number % K = r`, `number = aK + r`, where `0 <= r < K`
+         - consider 2 numbers `(aK + r1)` and `(bK + r2)`
+           - if their sum were divisible by K, `aK + r1 + bK + r2 = (a+b+1)K`, since `r1 + r2 cant be greater than 2(K-1) or 2K-2`
+           - thus `r1 + r2 = K`
+       - The approach
+         - create a new array which is `input[i] % k`. From the above math, it boils down to a `Pairs with sum K` problem as above
+
 2. **Hard - 25**
 ## 6. Heaps - 48 [x]
   - Notes [https://en.wikipedia.org/wiki/Binary_heap]
