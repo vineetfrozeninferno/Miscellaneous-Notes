@@ -29,7 +29,7 @@ A Test Double doesn't have to behave exactly like the real implementation, it me
 - Returns a value, specified at creation of the Stub, when it is called by the System Under Test.
 - Records the inputs provided to it when called by the SUT.
 - These records can then be inspected during the verification phase of the test (**Not During the test**).
--  **Example**: A LogSpy that records
+-  **Example**: A `LogSpy` that records
 	+  the number of times it was called 
 	+  the message that was logged
   
@@ -42,7 +42,7 @@ A Test Double doesn't have to behave exactly like the real implementation, it me
 	+ if a response is present, it returns that response.
 	+ if no mapping exists, throws a fatal exception as it does not know how to behave in this scenario.
 - It verifies that the SUT passes the correct arguments to the dependency being mocked.
-- **Example**: A MockDatabase that has a mapping of userName to age.
+- **Example**: A `MockDatabase` that has a mapping of userName to age.
 	+ if the username is correctly created and matches the expected argument provided during construction of the mock, it returns the age.
 	+ If the username does not match the expected argument, throws a fatal exception.
   
@@ -50,4 +50,15 @@ A Test Double doesn't have to behave exactly like the real implementation, it me
 - [Source](http://xunitpatterns.com/Fake%20Object.html)
 - Have working implementations, but usually take some shortcut which makes them not suitable for production.
 - Fakes are not provided with data during their creation.
-- **Example**: A Fake DB which has an in-memory map. This DB is used to store and retrieve data during the different operations of the SUT.
+- Fakes do not verify any inputs, conditions or behaviours.
+- **Example**: A `Fake DB` which has an in-memory map. This DB is used to store and retrieve data during the different operations of the SUT.
+
+
+## Summary Table
+|                                                             | Dummy | Stub | Spy | Mock  | Fake |
+|-------------------------------------------------------------|-------|------|-----|-------|------|
+| Return value depends on input                               | No    | No   | No  | Yes   | Yes  |
+| Return value provided at construction of TestDouble         | No    | Yes  | Yes | Yes   | No   |
+| Verification of arguments passed to TestDouble in real time | No    | No   | No  | Yes   | No   |
+| Verification of data after SUT has been exercised           | No    | No   | Yes | Maybe | No   |
+| Verifies a behaviour or other conditions                    | No    | No   | No  | Yes   | No   |
