@@ -60,5 +60,5 @@ A Test Double doesn't have to behave exactly like the real implementation, it me
 | Return value depends on input                               | No    | No   | No  | Yes   | Yes  |
 | Return value provided at construction of TestDouble         | No    | Yes  | Yes | Yes   | No   |
 | Verification of arguments passed to TestDouble in real time | No    | No   | No  | Yes   | No   |
-| Verification of data after SUT has been exercised           | No    | No   | Yes | Maybe | No   |
+| Verification of data after SUT has been exercised           | No    | No   | Yes | Maybe | Maybe|
 | Verifies a behaviour or other conditions                    | No    | No   | No  | Yes   | No   |
